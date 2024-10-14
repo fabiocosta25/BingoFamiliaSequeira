@@ -1,0 +1,142 @@
+body {
+    background-color: #1e1e1e;
+    color: #ffffff;
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
+    overflow-x: hidden;
+}
+
+.header {
+    margin: 20px;
+}
+
+.bingo-container {
+    margin: 20px;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+
+td {
+    border: 3px solid #ffffff;
+    padding: 20px;
+    text-align: center;
+    width: 200px;
+    height: 200px;
+    cursor: pointer;
+    font-size: 200px;
+}
+
+td.selected {
+    background-color: #4caf50;
+}
+.selected-numbers {
+    margin: 30px;
+    max-height: 0px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    width: 100%;
+    border: 3px solid #ffffff;
+    padding: 180px;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    font-size: 200px;
+}
+
+.selected-numbers ul {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    flex-direction: row; /* Altera a direção dos itens da lista para linha */
+}
+
+.selected-numbers li {
+    margin: 0 20px;
+    text-align: center;
+}
+
+.controls {
+    margin: 20px;
+}
+
+h1, h2 {
+    text-align: center;
+    font-size: 200px;
+}
+h2 {
+    text-align: center;
+    font-size: 100px;
+}
+
+/* Festa Junina styling */
+.header {
+    background-image: url('https://example.com/path-to-your-festa-junina-image.jpg');
+    background-size: cover;
+    background-position: center;
+    padding: 40px 20px;
+    width: 100%;
+    text-shadow: 2px 2px 4px #000000;
+}
+
+.background-images {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    margin: 20px 0;
+}
+
+.background-image {
+    width: 30%;
+    height: 150px;
+    background-size: cover;
+    background-position: center;
+    border: 2px solid #fff;
+    border-radius: 10px;
+}
+
+#image1 {
+    background-image: url('https://static.todamateria.com.br/upload/fe/st/festajunina-cke.jpg?auto_optimize=low');
+}
+
+#image2 {
+    background-image: url('https://s5.static.brasilescola.uol.com.br/be/2024/05/ilustracao-de-bandeirolas-e-de-baloes-de-decoracao-proximos-de-uma-placa-de-madeira-com-o-escrito-festa-junina.jpg');
+}
+
+#image3 {
+    background-image: url('https://s4.static.brasilescola.uol.com.br/be/2024/05/baloes-e-enfeites-coloridos-decorando-as-ruas-de-um-bairro-durante-a-festa-junina.jpg');
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 90px;
+    cursor: pointer;
+    background-color: #4caf50;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+}
+
+/* Scrollbar styling */
+.selected-numbers::-webkit-scrollbar {
+    width: 10px;
+}
+
+.selected-numbers::-webkit-scrollbar-track {
+    background: #333;
+    border-radius: 5px;
+}
+
+.selected-numbers::-webkit-scrollbar-thumb {
+    background: #555;
+    border-radius: 5px;
+}
+
+.selected-numbers::-webkit-scrollbar-thumb:hover {
+    background: #777;
+}
