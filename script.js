@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const resetButton = document.getElementById("reset-button");
     let selectedNumbers = [];
 
-    // Create Bingo table
+    // Cria a tabela de Bingo
     for (let i = 0; i < 5; i++) {
         let row = document.createElement("tr");
         for (let j = 1; j <= 15; j++) {
@@ -15,8 +15,11 @@ document.addEventListener("DOMContentLoaded", function () {
                 if (!cell.classList.contains("selected")) {
                     cell.classList.add("selected");
                     selectedNumbers.push(number);
-                    updateSelectedList();
+                } else {
+                    cell.classList.remove("selected");
+                    selectedNumbers = selectedNumbers.filter(n => n !== number);
                 }
+                updateSelectedList();
             });
             row.appendChild(cell);
         }
