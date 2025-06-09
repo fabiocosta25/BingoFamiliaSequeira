@@ -34,7 +34,25 @@ document.addEventListener("DOMContentLoaded", function () {
             selectedList.appendChild(listItem);
         });
     }
+// Botão de tela cheia
+document.getElementById('fullscreen-btn').addEventListener('click', function () {
+  if (!document.fullscreenElement) {
+    document.documentElement.requestFullscreen();
+  } else {
+    document.exitFullscreen();
+  }
+});
 
+// Botão de Bingo com animação
+document.getElementById('bingo-btn').addEventListener('click', function () {
+  const animation = document.getElementById('bingo-animation');
+  animation.style.display = 'block';
+  animation.style.animation = 'bingo-bounce 1.2s ease';
+  setTimeout(() => {
+    animation.style.display = 'none';
+    animation.style.animation = 'none';
+  }, 1200); // duração igual à animação
+});
     resetButton.addEventListener("click", function () {
         selectedNumbers = [];
         updateSelectedList();
