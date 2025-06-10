@@ -8,13 +8,12 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="header">
-        <h1>Bingo da Família Sequeira</h1>
-    </div>
-    <div class="background-images">
-        <div class="background-image" id="image1"></div>
-        <div class="background-image" id="image2"></div>
-        <div class="background-image" id="image3"></div>
+    <img src="Bandeirinhas.gif" alt="Fogo Animation" style="height: 500px; width: 100%;  ">
+    <div class="header" style="display: flex; align-items: center; justify-content: center; gap: 10px;">
+        <img src="fogo.gif" alt="Fogo Animation" style="height: 500px; width: auto;">
+        <h1 style="margin: 0">Bingo da Família Sequeira</h1>
+        <img src="fogo.gif" alt="Fogo Animation" style="height: 500px; width: auto;">
+
     </div>
     <div class="bingo-container">
         <table id="bingo-table">
@@ -25,6 +24,8 @@
     </div>
     <div class="controls">
         <button id="reset-button">Resetar Jogo</button>
+        <button id="fullscreen-button">Fullscreen</button>
+        <button id="bingo-animation-button">Animação Bingo</button>
     </div>
         <h2>Números Selecionados</h2>
     <div class="selected-numbers">
@@ -32,6 +33,6 @@
             <!-- JavaScript will populate this list -->
         </ul>
     </div>
-    <script src="script.js"></script>
+    <script src="scripts.js"></script>
 </body>
 </html>
