@@ -7,7 +7,7 @@ body {
     align-items: center;
     margin: 0;
     overflow-x: hidden;
-}
+} 
 
 .header {
     margin: 20px;
@@ -20,7 +20,13 @@ body {
 table {
     border-collapse: collapse;
 }
-
+h1{
+    margin-top: 0ch;
+    font-size: 200px
+}
+h2{
+    font-size: 100px
+}
 
 td {
     border: 3px solid #ffffff;
@@ -33,7 +39,8 @@ td {
 }
 
 td.selected {
-    background-color: #4caf50;
+    background-color: #f96d17;
+    
 }
 .selected-numbers {
     margin: 30px;
@@ -62,67 +69,82 @@ td.selected {
 }
 
 .controls {
-    margin: 20px;
-}
-
-h1, h2 {
-    text-align: center;
-    font-size: 200px;
-}
-h2 {
-    text-align: center;
-    font-size: 100px;
-}
-
-/* Festa Junina styling */
-.header {
-    background-image: url('https://example.com/path-to-your-festa-junina-image.jpg');
-    background-size: cover;
-    background-position: center;
-    padding: 40px 20px;
-    width: 100%;
-    text-shadow: 2px 2px 4px #000000;
-}
-
-.background-images {
-    width: 100%;
+    margin: 30px 0;
     display: flex;
-    justify-content: space-around;
-    margin: 20px 0;
-}
-
-.background-image {
-    width: 30%;
-    height: 150px;
-    background-size: cover;
-    background-position: center;
-    border: 2px solid #fff;
-    border-radius: 10px;
-}
-
-#image1 {
-    background-image: url('https://static.todamateria.com.br/upload/fe/st/festajunina-cke.jpg?auto_optimize=low');
-}
-
-#image2 {
-    background-image: url('https://s5.static.brasilescola.uol.com.br/be/2024/05/ilustracao-de-bandeirolas-e-de-baloes-de-decoracao-proximos-de-uma-placa-de-madeira-com-o-escrito-festa-junina.jpg');
-}
-
-#image3 {
-    background-image: url('https://s4.static.brasilescola.uol.com.br/be/2024/05/baloes-e-enfeites-coloridos-decorando-as-ruas-de-um-bairro-durante-a-festa-junina.jpg');
+    gap: 30px;
+    justify-content: center;
+    flex-wrap: wrap;
 }
 
 button {
-    padding: 10px 20px;
-    font-size: 90px;
+    padding: 15px 35px;
+    font-size: 6.5rem;
     cursor: pointer;
-    background-color: #4caf50;
-    color: #ffffff;
+    background-color: #c82f1b;
+    color: #fff3e0;
     border: none;
-    border-radius: 5px;
+    border-radius: 100px;
+    font-weight: 800;
+    box-shadow: 0 0 15px #f39f86;
+    position: relative;
+    overflow: hidden;
+    transition: background-color 0.3s ease;
+    min-width: 180px;
+    text-align: center;
 }
 
-/* Scrollbar styling */
+button:hover {
+    background-color: #f9d976;
+    color: #4b2e05;
+    box-shadow: 0 0 30px #f9d976, 0 0 40px #ffb74d;
+    animation: flameFlicker 1.5s infinite;
+}
+
+button::before {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    width: 180%;
+    height: 180%;
+    background: radial-gradient(circle at center, rgba(255, 140, 0, 0.9), transparent 70%);
+    transform-origin: center bottom;
+    transform: translateX(-50%) translateY(0) scale(0.8);
+    opacity: 0;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    pointer-events: none;
+    border-radius: 50%;
+    filter: blur(10px);
+    animation: flamePulse 1.5s infinite;
+    animation-timing-function: ease-in-out;
+}
+
+button:hover::before {
+    opacity: 1;
+    transform: translateX(-50%) translateY(-25%) scale(1);
+}
+
+@keyframes flamePulse {
+    0%, 100% {
+        transform: translateX(-50%) translateY(0) scale(0.8);
+        opacity: 0.6;
+    }
+    50% {
+        transform: translateX(-50%) translateY(-15%) scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes flameFlicker {
+    0%, 100% {
+        filter: drop-shadow(0 0 6px #ff6f00);
+    }
+    50% {
+        filter: drop-shadow(0 0 12px #ff6f00);
+    }
+}
+
+
 .selected-numbers::-webkit-scrollbar {
     width: 10px;
 }
@@ -141,8 +163,54 @@ button {
     background: #777;
 }
 
+#confetti-container {
+    pointer-events: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow: visible;
+    z-index: 2000;
+}
 
-#bingo-animation {
-  animation: none;
-  transition: opacity 0.5s;
+.confetti {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    opacity: 0.8;
+    animation-name: confetti-fall, confetti-shake;
+    animation-timing-function: linear, ease-in-out;
+    animation-iteration-count: infinite, infinite;
+    animation-duration: 3s, 0.5s;
+    border-radius: 50%;
+}
+
+@keyframes confetti-fall {
+    0% {
+        transform: translateY(-10vh);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(110vh);
+        opacity: 0;
+    }
+}
+
+@keyframes confetti-shake {
+    0%, 100% {
+        transform: translateX(0);
+    }
+    50% {
+        transform: translateX(10px);
+    }
+}
+
+@keyframes bingoFlash {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
 }
