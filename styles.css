@@ -1,0 +1,772 @@
+/* =============================================
+   BINGO DA FAMÍLIA SEQUEIRA 2025
+   Design System - Festa Junina Premium
+   ============================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800;900&display=swap');
+
+/* ---------- CSS Variables / Design Tokens ---------- */
+:root {
+  --bg-deep:       #0d0a1a;
+  --bg-card:       #1a1330;
+  --bg-cell:       #201840;
+  --primary:       #ff4500;
+  --primary-glow:  #ff6a00;
+  --secondary:     #ffd700;
+  --accent-pink:   #e91e8c;
+  --accent-teal:   #00e5ff;
+  --text-main:     #fff5e0;
+  --text-muted:    #b0a8cc;
+  --border-subtle: rgba(255, 215, 0, 0.25);
+  --cell-selected: #ff4500;
+  --cell-hover:    rgba(255, 69, 0, 0.3);
+  --shadow-glow:   0 0 24px rgba(255, 69, 0, 0.6);
+  --radius-lg:     18px;
+  --radius-md:     12px;
+  --radius-sm:     8px;
+  --font-display:  'Fredoka One', cursive;
+  --font-body:     'Nunito', sans-serif;
+  --transition:    0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ---------- Reset & Base ---------- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+html {
+  background-color: var(--bg-deep);
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--bg-deep);
+  background-image:
+    radial-gradient(ellipse at 20% 20%, rgba(233, 30, 140, 0.08) 0%, transparent 60%),
+    radial-gradient(ellipse at 80% 80%, rgba(0, 229, 255, 0.06) 0%, transparent 60%),
+    radial-gradient(ellipse at 50% 50%, rgba(255, 69, 0, 0.05) 0%, transparent 80%);
+  overflow-x: hidden;
+  margin: 0;
+}
+
+/* #app é o container flex principal — é ele que será escalado no fullscreen */
+#app {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  min-height: 100vh;
+  color: var(--text-main);
+  font-family: var(--font-body);
+}
+
+
+/* ---------- Bandeirinhas ---------- */
+.banners-top,
+.banners-bottom {
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+}
+
+.bandeirinhas {
+  width: 100%;
+  height: auto;
+  display: block;
+  filter: drop-shadow(0 4px 12px rgba(255, 215, 0, 0.4));
+}
+
+/* ---------- Header ---------- */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(8px, 2vw, 32px);
+  padding: 20px clamp(16px, 4vw, 60px);
+  width: 100%;
+  flex-wrap: nowrap;
+}
+
+.fogo {
+  height: clamp(80px, 14vw, 220px);
+  width: auto;
+  max-width: clamp(80px, 14vw, 220px);
+  object-fit: contain;
+  flex-shrink: 0;
+  filter: drop-shadow(0 0 24px rgba(255, 100, 0, 0.7));
+  animation: flameSway 3s ease-in-out infinite alternate;
+}
+
+.fogo-left  { animation-delay: 0s; }
+.fogo-right { animation-delay: 1.5s; transform: scaleX(-1); }
+
+@keyframes flameSway {
+  from { transform: rotate(-3deg); }
+  to   { transform: rotate(3deg); }
+}
+.fogo-right {
+  animation-name: flameSwayRight;
+}
+@keyframes flameSwayRight {
+  from { transform: scaleX(-1) rotate(-3deg); }
+  to   { transform: scaleX(-1) rotate(3deg); }
+}
+
+.title-block {
+  text-align: center;
+  flex: 1;
+}
+
+.title-main {
+  font-family: var(--font-display);
+  font-size: clamp(60px, 12vw, 160px);
+  line-height: 1;
+  background: linear-gradient(135deg, #fff700 0%, #ff8c00 35%, #ff2d00 65%, #ff00aa 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  filter: drop-shadow(0 4px 12px rgba(255, 100, 0, 0.5));
+  animation: titlePulse 4s ease-in-out infinite;
+}
+
+@keyframes titlePulse {
+  0%, 100% { filter: drop-shadow(0 4px 12px rgba(255, 100, 0, 0.5)); }
+  50%       { filter: drop-shadow(0 4px 24px rgba(255, 200, 0, 0.8)); }
+}
+
+.title-sub {
+  font-family: var(--font-body);
+  font-weight: 900;
+  font-size: clamp(20px, 4vw, 60px);
+  color: var(--secondary);
+  letter-spacing: 0.04em;
+  text-shadow: 0 2px 12px rgba(255, 215, 0, 0.5);
+  margin-top: -8px;
+}
+
+.title-year {
+  font-family: var(--font-display);
+  font-size: clamp(16px, 2.8vw, 42px);
+  color: var(--accent-pink);
+  letter-spacing: 0.15em;
+  margin-top: 6px;
+  text-shadow: 0 0 16px rgba(233, 30, 140, 0.6);
+}
+
+/* ---------- Last Number Badge ---------- */
+.last-number-section {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 10px 20px 24px;
+}
+
+.last-number-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.last-number-label {
+  font-family: var(--font-body);
+  font-weight: 800;
+  font-size: clamp(14px, 2vw, 26px);
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+}
+
+.last-number-badge {
+  font-family: var(--font-display);
+  font-size: clamp(56px, 12vw, 160px);
+  line-height: 1;
+  min-width: clamp(120px, 20vw, 260px);
+  text-align: center;
+  padding: 12px 36px;
+  background: var(--bg-card);
+  border: 3px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  color: var(--secondary);
+  text-shadow: 0 0 30px rgba(255, 215, 0, 0.6);
+  box-shadow:
+    0 0 30px rgba(255, 215, 0, 0.15),
+    inset 0 0 30px rgba(255, 100, 0, 0.05);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.last-number-badge::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255,215,0,0.08) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.last-number-badge.pop {
+  animation: badgePop 0.45s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes badgePop {
+  0%   { transform: scale(0.8); }
+  60%  { transform: scale(1.12); }
+  100% { transform: scale(1); }
+}
+
+/* ---------- Bingo Table ---------- */
+.bingo-container {
+  width: 100%;
+  padding: 0 clamp(10px, 2vw, 40px) 24px;
+  overflow-x: auto;
+}
+
+table {
+  border-collapse: separate;
+  border-spacing: 8px;
+  margin: 0 auto;
+}
+
+td {
+  border: 2px solid rgba(255, 215, 0, 0.2);
+  border-radius: var(--radius-md);
+  padding: clamp(10px, 1.5vw, 22px);
+  text-align: center;
+  width: clamp(60px, 9vw, 140px);
+  height: clamp(60px, 9vw, 140px);
+  cursor: pointer;
+  font-family: var(--font-display);
+  font-size: clamp(22px, 4vw, 68px);
+  line-height: 1;
+  background: var(--bg-cell);
+  color: var(--text-main);
+  transition:
+    background var(--transition),
+    border-color var(--transition),
+    transform var(--transition),
+    box-shadow var(--transition),
+    color var(--transition);
+  user-select: none;
+  position: relative;
+  overflow: hidden;
+}
+
+td::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.04) 0%, transparent 60%);
+  pointer-events: none;
+  border-radius: inherit;
+}
+
+td:hover:not(.selected) {
+  background: var(--cell-hover);
+  border-color: rgba(255, 69, 0, 0.6);
+  transform: scale(1.06);
+  box-shadow: 0 0 18px rgba(255, 69, 0, 0.4);
+  color: var(--secondary);
+}
+
+td.selected {
+  background: var(--cell-selected);
+  border-color: var(--secondary);
+  color: #ffffff;
+  box-shadow:
+    0 0 20px rgba(255, 69, 0, 0.7),
+    inset 0 0 12px rgba(255, 215, 0, 0.2);
+  transform: scale(0.96);
+  text-shadow: 0 1px 4px rgba(0,0,0,0.5);
+}
+
+td.selected::after {
+  content: '✓';
+  position: absolute;
+  top: 4px;
+  right: 6px;
+  font-size: clamp(10px, 1.2vw, 18px);
+  font-family: var(--font-body);
+  color: var(--secondary);
+  opacity: 0.8;
+}
+
+/* ---------- Controls ---------- */
+.controls {
+  display: flex;
+  gap: clamp(12px, 2.5vw, 32px);
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 16px clamp(16px, 3vw, 40px) 28px;
+  width: 100%;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: clamp(10px, 1.5vw, 18px) clamp(20px, 3vw, 44px);
+  font-family: var(--font-body);
+  font-size: clamp(16px, 2.2vw, 28px);
+  font-weight: 800;
+  cursor: pointer;
+  border: 2px solid transparent;
+  border-radius: 100px;
+  transition:
+    background var(--transition),
+    box-shadow var(--transition),
+    transform var(--transition),
+    border-color var(--transition);
+  position: relative;
+  overflow: hidden;
+  letter-spacing: 0.04em;
+}
+
+.btn-icon {
+  font-size: 1.15em;
+  line-height: 1;
+}
+
+.btn::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.12) 0%, transparent 50%);
+  opacity: 0;
+  transition: opacity var(--transition);
+  border-radius: inherit;
+}
+
+.btn:hover::after { opacity: 1; }
+
+.btn:active { transform: scale(0.96); }
+
+/* Reset */
+.btn-reset {
+  background: linear-gradient(135deg, #4a1a6e 0%, #7b1fa2 100%);
+  color: #f3e5ff;
+  box-shadow: 0 4px 20px rgba(123, 31, 162, 0.4);
+}
+.btn-reset:hover {
+  box-shadow: 0 4px 30px rgba(186, 104, 200, 0.7);
+  border-color: rgba(186, 104, 200, 0.5);
+  transform: translateY(-2px);
+}
+
+/* Fullscreen */
+.btn-fullscreen {
+  background: linear-gradient(135deg, #0d3b6e 0%, #1565c0 100%);
+  color: #e3f2fd;
+  box-shadow: 0 4px 20px rgba(21, 101, 192, 0.4);
+}
+.btn-fullscreen:hover {
+  box-shadow: 0 4px 30px rgba(100, 181, 246, 0.7);
+  border-color: rgba(100, 181, 246, 0.5);
+  transform: translateY(-2px);
+}
+
+/* Bingo */
+.btn-bingo {
+  background: linear-gradient(135deg, #b71c1c 0%, #f44336 50%, #ff8f00 100%);
+  color: #fff9f0;
+  box-shadow: 0 4px 24px rgba(244, 67, 54, 0.5);
+}
+.btn-bingo:hover {
+  box-shadow: 0 4px 36px rgba(255, 143, 0, 0.8), 0 0 20px rgba(244, 67, 54, 0.5);
+  border-color: rgba(255, 215, 0, 0.5);
+  transform: translateY(-2px);
+  animation: flameFlicker 0.8s infinite;
+}
+
+@keyframes flameFlicker {
+  0%, 100% { filter: brightness(1); }
+  50%       { filter: brightness(1.2) saturate(1.3); }
+}
+
+/* ---------- Selected Numbers Section ---------- */
+.selected-section {
+  width: 100%;
+  padding: 0 clamp(16px, 3vw, 48px) 32px;
+}
+
+.selected-title {
+  font-family: var(--font-display);
+  font-size: clamp(24px, 4vw, 56px);
+  text-align: center;
+  margin-bottom: 16px;
+  color: var(--secondary);
+  text-shadow: 0 2px 16px rgba(255, 215, 0, 0.4);
+  letter-spacing: 0.06em;
+}
+
+.selected-numbers {
+  background: var(--bg-card);
+  border: 2px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: clamp(14px, 2vw, 28px);
+  overflow-x: auto;
+  overflow-y: hidden;
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 215, 0, 0.1);
+  min-height: clamp(80px, 12vw, 160px);
+  display: flex;
+  align-items: center;
+}
+
+.selected-list {
+  list-style-type: none;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  gap: clamp(8px, 1.5vw, 20px);
+  padding: 0;
+  align-items: center;
+}
+
+.selected-list li {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-size: clamp(22px, 3.5vw, 52px);
+  min-width: clamp(50px, 7vw, 90px);
+  height: clamp(50px, 7vw, 90px);
+  border-radius: var(--radius-md);
+  padding: 4px 8px;
+  border: 2px solid transparent;
+  transition: transform 0.2s ease;
+  animation: badgeIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  flex-shrink: 0;
+}
+
+.selected-list li:nth-child(odd) {
+  background: linear-gradient(135deg, #ff4500, #ff8c00);
+  border-color: rgba(255, 215, 0, 0.6);
+  color: #ffffff;
+  box-shadow: 0 0 12px rgba(255, 69, 0, 0.4);
+}
+
+.selected-list li:nth-child(even) {
+  background: linear-gradient(135deg, #76ff03, #00e676);
+  border-color: rgba(255, 215, 0, 0.4);
+  color: #0d0a1a;
+  box-shadow: 0 0 12px rgba(118, 255, 3, 0.3);
+}
+
+.selected-list li:hover {
+  transform: scale(1.1) translateY(-3px);
+}
+
+@keyframes badgeIn {
+  from { transform: scale(0.5) rotate(-10deg); opacity: 0; }
+  to   { transform: scale(1) rotate(0deg); opacity: 1; }
+}
+
+/* ---------- Scrollbar Styling ---------- */
+.selected-numbers::-webkit-scrollbar { height: 6px; }
+.selected-numbers::-webkit-scrollbar-track {
+  background: rgba(255,255,255,0.05);
+  border-radius: 3px;
+}
+.selected-numbers::-webkit-scrollbar-thumb {
+  background: rgba(255, 215, 0, 0.3);
+  border-radius: 3px;
+}
+.selected-numbers::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 215, 0, 0.6);
+}
+
+/* ---------- Bingo Animation Overlay ---------- */
+#bingo-animation {
+  pointer-events: none;
+  user-select: none;
+}
+
+/* ---------- Confetti ---------- */
+#confetti-container {
+  pointer-events: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: visible;
+  z-index: 2000;
+}
+
+.confetti-piece {
+  position: absolute;
+  top: -20px;
+  opacity: 0.9;
+  animation: confettiFall linear forwards;
+}
+
+@keyframes confettiFall {
+  0%   { transform: translateY(0) rotate(0deg); opacity: 1; }
+  80%  { opacity: 1; }
+  100% { transform: translateY(110vh) rotate(720deg); opacity: 0; }
+}
+
+/* ---------- BINGO Flash Animation ---------- */
+@keyframes bingoFlash {
+  0%, 100% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+  25%       { opacity: 0.2; transform: translate(-50%, -50%) scale(0.9); }
+  75%       { opacity: 1; transform: translate(-50%, -50%) scale(1.05); }
+}
+
+/* ==============================================
+   FULLSCREEN MODE (PROJECTOR OPTIMIZED)
+   Pure CSS grid design that fills 100% viewport.
+   Organizes the app into:
+   - Top Row (Header/Logo on left, Last Number in center, Controls on right)
+   - Middle Row (Bingo Grid spanning the full screen width)
+   - Bottom Row (Called Numbers timeline)
+   ============================================== */
+
+body.fullscreen-mode {
+  overflow: hidden;
+  height: 100vh;
+  width: 100vw;
+  margin: 0;
+  padding: 0;
+  background-color: var(--bg-deep);
+}
+
+body.fullscreen-mode #app {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr 1.2fr; /* Left (Header), Center (Last Number), Right (Controls) */
+  grid-template-rows: 24vh 1fr auto;       /* Top controls, Grid (flex size), Footer */
+  grid-template-areas:
+    "header last-number controls"
+    "table table table"
+    "footer footer footer";
+  width: 100vw;
+  height: 100vh;
+  box-sizing: border-box;
+  padding: 1.5vh 2vw;
+  gap: 1.5vh 2vw;
+  overflow: hidden;
+  min-height: unset;
+}
+
+/* Hide banners */
+body.fullscreen-mode .banners-top,
+body.fullscreen-mode .banners-bottom {
+  display: none !important;
+}
+
+/* Header styling — compact, centered, fires flanking title */
+body.fullscreen-mode .header {
+  grid-area: header;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5vw;
+  padding: 1vh 1vw;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(180deg, rgba(255, 100, 0, 0.06) 0%, transparent 100%);
+  border-bottom: 2px solid rgba(255, 215, 0, 0.15);
+  border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+}
+
+body.fullscreen-mode .header .fogo {
+  height: 16vh;
+  max-width: 16vh;
+  margin: 0;
+  filter: drop-shadow(0 0 18px rgba(255, 100, 0, 0.6));
+}
+
+body.fullscreen-mode .title-block {
+  text-align: center;
+}
+
+body.fullscreen-mode .title-main {
+  font-size: 10vh;
+  line-height: 0.95;
+}
+
+body.fullscreen-mode .title-sub {
+  font-size: 3vh;
+  margin-top: 0;
+  letter-spacing: 0.08em;
+}
+
+body.fullscreen-mode .title-year {
+  font-size: 2.4vh;
+  margin-top: 0.3vh;
+  letter-spacing: 0.2em;
+}
+
+/* Last number badge section */
+body.fullscreen-mode .last-number-section {
+  grid-area: last-number;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  margin: 0;
+  height: 100%;
+  background: linear-gradient(180deg, rgba(255, 100, 0, 0.06) 0%, transparent 100%);
+  border-bottom: 2px solid rgba(255, 215, 0, 0.15);
+  border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+}
+
+body.fullscreen-mode .last-number-wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1.5vw;
+}
+
+body.fullscreen-mode .last-number-label {
+  font-size: 2vh;
+  text-align: right;
+  max-width: 8vw;
+  line-height: 1.2;
+}
+
+body.fullscreen-mode .last-number-badge {
+  font-size: 12vh; /* Large, safe size that never clips inside the circle */
+  line-height: 1;
+  width: 17vh;     /* Strict dimensions to guarantee a perfect circle */
+  height: 17vh;
+  padding: 0;
+  border-width: 4px;
+  border-radius: 50%; /* Classic circular bingo ball */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+  box-shadow: 
+    0 0 30px rgba(255, 215, 0, 0.3),
+    inset 0 0 20px rgba(255, 215, 0, 0.15);
+}
+
+/* Controls */
+body.fullscreen-mode .controls {
+  grid-area: controls;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.8vw;
+  width: 100%;
+  padding: 0 1vw;
+  margin: 0;
+  height: 100%;
+  background: linear-gradient(180deg, rgba(255, 100, 0, 0.06) 0%, transparent 100%);
+  border-bottom: 2px solid rgba(255, 215, 0, 0.15);
+  border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+}
+
+body.fullscreen-mode .controls .btn {
+  width: auto;
+  padding: 1.2vh 1.2vw;
+  font-size: 1.6vh;
+  margin: 0;
+  justify-content: center;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+/* Bingo Table container */
+body.fullscreen-mode .bingo-container {
+  grid-area: table;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+body.fullscreen-mode table {
+  width: 100%;
+  height: 100%;
+  border-spacing: 0.8vh 1vh;
+  table-layout: fixed;
+  margin: 0;
+}
+
+body.fullscreen-mode td {
+  width: auto !important;
+  height: auto !important;
+  padding: 0;
+  font-size: min(7.5vh, 4.5vw); /* Scale perfectly to fit both height and width of square cells */
+  border-width: 3px;
+  border-radius: var(--radius-md);
+  vertical-align: middle;
+  text-align: center;
+  font-weight: 900;
+}
+
+/* Bright, high-contrast selected cells for projectors (dark text on bright gold gradient) */
+body.fullscreen-mode td.selected {
+  background: linear-gradient(135deg, #ffe600 0%, #ff8c00 100%) !important;
+  color: #0d0a1a !important;
+  border-color: #ffffff !important;
+  box-shadow: 0 0 25px rgba(255, 230, 0, 0.7) !important;
+  text-shadow: none !important;
+}
+
+/* Selected mark position inside fullscreen cell */
+body.fullscreen-mode td.selected::after {
+  font-size: 1.8vh;
+  top: 2px;
+  right: 4px;
+  color: #0d0a1a !important;
+}
+
+/* Footer Section */
+body.fullscreen-mode .selected-section {
+  grid-area: footer;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1.5vw;
+}
+
+body.fullscreen-mode .selected-title {
+  font-size: 2.2vh;
+  margin-bottom: 0;
+  text-align: left;
+  white-space: nowrap;
+}
+
+body.fullscreen-mode .selected-numbers {
+  flex: 1;
+  min-height: 8vh;
+  padding: 0.6vh 1.2vh;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+}
+
+body.fullscreen-mode .selected-list {
+  gap: 1vh;
+}
+
+body.fullscreen-mode .selected-list li {
+  font-size: 3.5vh;
+  min-width: 5.5vh;
+  height: 5.5vh;
+  border-radius: var(--radius-sm);
+  padding: 0;
+}

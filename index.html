@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Bingo da Família Sequeira 2025 - O jogo de bingo festivo para toda a família!">
+  <title>Bingo da Família Sequeira 2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800;900&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="styles.css?v=5">
+</head>
+
+<body>
+
+  <div id="app">
+
+  <!-- Bandeirinhas topo -->
+  <div class="banners-top">
+    <img src="Bandeirinhas.gif" alt="Bandeirinhas decorativas" class="bandeirinhas">
+  </div>
+
+  <!-- Cabeçalho com fogo e título -->
+  <header class="header">
+    <img src="fogo.gif" alt="Chamas decorativas" class="fogo fogo-left">
+    <div class="title-block">
+      <h1 class="title-main">Bingo</h1>
+      <p class="title-sub">da Família Sequeira</p>
+      <p class="title-year">2026</p>
+    </div>
+    <img src="fogo.gif" alt="Chamas decorativas" class="fogo fogo-right">
+  </header>
+
+  <!-- Badge do último número sorteado -->
+  <section class="last-number-section" aria-label="Último número chamado">
+    <div class="last-number-wrapper">
+      <span class="last-number-label">Último Número</span>
+      <div id="last-number-badge" class="last-number-badge">—</div>
+    </div>
+  </section>
+
+  <!-- Tabela do Bingo -->
+  <main class="bingo-container">
+    <table id="bingo-table" aria-label="Tabela de Bingo">
+      <tbody>
+        <!-- JavaScript popula esta tabela -->
+      </tbody>
+    </table>
+  </main>
+
+  <!-- Botões de controle -->
+  <div class="controls">
+    <button id="reset-button" class="btn btn-reset" title="Resetar o jogo">
+      <span class="btn-icon">🔄</span> Resetar
+    </button>
+    <button id="fullscreen-button" class="btn btn-fullscreen" title="Alternar tela cheia">
+      <span class="btn-icon">⛶</span> Fullscreen
+    </button>
+    <button id="bingo-animation-button" class="btn btn-bingo" title="Animação de vitória">
+      <span class="btn-icon">🎉</span> BINGO!
+    </button>
+  </div>
+
+  <!-- Números selecionados -->
+  <section class="selected-section" aria-label="Números selecionados">
+    <h2 class="selected-title">Números Chamados</h2>
+    <div class="selected-numbers">
+      <ul id="selected-list" class="selected-list">
+        <!-- JavaScript popula esta lista -->
+      </ul>
+    </div>
+  </section>
+
+  <!-- Bandeirinhas base -->
+  <div class="banners-bottom">
+    <img src="Bandeirinhas.gif" alt="Bandeirinhas decorativas" class="bandeirinhas">
+  </div>
+
+  </div><!-- /#app -->
+
+  <script src="script.js?v=5"></script>
+</body>
+
+</html>
